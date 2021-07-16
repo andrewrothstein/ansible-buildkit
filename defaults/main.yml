@@ -5,6 +5,17 @@ buildkit_mirror: https://github.com/moby/buildkit/releases/download
 buildkit_os: linux
 buildkit_arch: amd64
 buildkit_parent_install_dir: /usr/local
+buildkit_apps:
+  - buildctl
+  - buildkitd
+  - buildkit-qemu-aarch64
+  - buildkit-qemu-arm
+  - buildkit-qemu-i386
+  - buildkit-qemu-ppc64le
+  - buildkit-qemu-riscv64
+  - buildkit-qemu-s390x
+  - buildkit-runc
+
 buildkit_checksums:
   '0.8.3':
     # https://github.com/moby/buildkit/releases/download/v0.8.3/buildkit-v0.8.3.darwin-amd64.tar.gz

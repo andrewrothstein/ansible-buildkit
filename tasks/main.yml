@@ -50,8 +50,7 @@
 - name: linking executables in {{ buildkit_bin_dir }} to {{ buildkit_install_dir }}
   become: true
   become_user: root
-  with_items:
-    - buildctl
+  with_items: '{{ buildkit_apps }}'
   file:
     src: '{{ buildkit_bin_dir }}/{{ item }}'
     dest: '{{ buildkit_link_dir }}/{{ item }}'
