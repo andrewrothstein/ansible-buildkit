@@ -1,0 +1,23 @@
+---
+# defaults file for buildkit
+buildkit_ver: 0.8.3
+buildkit_mirror: https://github.com/moby/buildkit/releases/download
+buildkit_os: linux
+buildkit_arch: amd64
+buildkit_parent_install_dir: /usr/local
+buildkit_checksums:
+  '0.8.3':
+    # https://github.com/moby/buildkit/releases/download/v0.8.3/buildkit-v0.8.3.darwin-amd64.tar.gz
+    darwin-amd64: sha256:31469477bc8feaa9f6d7a3ebbad732a1973ec7c2b76bba0cc8941687a0b401d0
+    # https://github.com/moby/buildkit/releases/download/v0.8.3/buildkit-v0.8.3.linux-amd64.tar.gz
+    linux-amd64: sha256:1e5cf4cd6cf2645575c74f385d6ca2ba51c622bf0217f48af9ab0fbcd9432161
+    # https://github.com/moby/buildkit/releases/download/v0.8.3/buildkit-v0.8.3.linux-arm-v7.tar.gz
+    linux-arm-v7: sha256:9df1886e0d7b3074496055cfcbf634e643ce28ed0427abe2a8ca92363737f0b3
+    # https://github.com/moby/buildkit/releases/download/v0.8.3/buildkit-v0.8.3.linux-arm64.tar.gz
+    linux-arm64: sha256:61f0369ec7593b4b493a32c1d2c7845a183cf6891489cfc882eeccec75c3ad1e
+    # https://github.com/moby/buildkit/releases/download/v0.8.3/buildkit-v0.8.3.linux-ppc64le.tar.gz
+    linux-ppc64le: sha256:736cf8d827d19e7b47eb893fe0d11d4796848f517b2a25baf73a487aa8597846
+    # https://github.com/moby/buildkit/releases/download/v0.8.3/buildkit-v0.8.3.linux-s390x.tar.gz
+    linux-s390x: sha256:11bbc051d161e51c862f6d351625d27831229a3e20be7e138fa8eaf3711000c8
+    # https://github.com/moby/buildkit/releases/download/v0.8.3/buildkit-v0.8.3.windows-amd64.zip
+    windows-amd64: sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855

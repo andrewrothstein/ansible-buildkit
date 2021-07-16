@@ -1,0 +1,58 @@
+---
+- name: resolve platform specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+- name: check for installation in {{ buildkit_install_dir }}
+  become: true
+  stat:
+    path: '{{ buildkit_install_dir }}'
+  register: buildkit_binary
+  changed_when: false
+- when: not buildkit_binary.stat.exists
+  block:
+    - name: downloading {{ buildkit_url }}...
+      become: true
+      become_user: root
+      get_url:
+        url: '{{ buildkit_url }}'
+        dest: '{{ buildkit_tmp_archive }}'
+        checksum: '{{ buildkit_checksum }}'
+        mode: 0644
+    - name: mkdir -p {{ buildkit_install_dir }}
+      become: true
+      become_user: root
+      file:
+        path: '{{ buildkit_install_dir }}'
+        state: directory
+        mode: 0755
+    - name: unarchive {{ buildkit_tmp_archive }}
+      become: true
+      become_user: root
+      unarchive:
+        remote_src: true
+        src: '{{ buildkit_tmp_archive }}'
+        dest: '{{ buildkit_install_dir }}'
+        creates: '{{ buildkit_bin_dir }}'
+  always:
+    - name: rm -f {{ buildkit_tmp_archive }}
+      become: true
+      become_user: root
+      file:
+        path: '{{ buildkit_tmp_archive }}'
+        state: absent
+- name: linking executables in {{ buildkit_bin_dir }} to {{ buildkit_install_dir }}
+  become: true
+  become_user: root
+  with_items:
+    - buildctl
+  file:
+    src: '{{ buildkit_bin_dir }}/{{ item }}'
+    dest: '{{ buildkit_link_dir }}/{{ item }}'
+    state: link
