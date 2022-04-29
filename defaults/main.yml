@@ -1,6 +1,6 @@
 ---
 # defaults file for buildkit
-buildkit_ver: 0.10.1
+buildkit_ver: 0.10.2
 buildkit_mirror: https://github.com/moby/buildkit/releases/download
 buildkit_os: linux
 buildkit_arch: amd64
@@ -132,3 +132,24 @@ buildkit_checksums:
     windows-amd64: sha256:fe85d744ed6fa03dd038cee1d74288b73cbdfd5d3b96795ae35783c1294b0bb3
     # https://github.com/moby/buildkit/releases/download/v0.10.1/buildkit-v0.10.1.windows-arm64.tar.gz
     windows-arm64: sha256:ca58d47c4ba2856ae61a265db369e39d0cd788d6e144bbc6622cfef270469895
+  '0.10.2':
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.darwin-amd64.tar.gz
+    darwin-amd64: sha256:f3739f67366e0f42e59491201a645263985206dda0e9e09bf626443b9ac4b9b1
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.darwin-arm64.tar.gz
+    darwin-arm64: sha256:22cb34b8d058b6fd8d44518da514d9ec1f129f0b09f6aac62774b4b078dadcad
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.linux-amd64.tar.gz
+    linux-amd64: sha256:ce330ab4e1d6543fec0e62d724d361dddfcfb6dcd9ef992e0e6a498a1865f51f
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.linux-arm-v7.tar.gz
+    linux-arm-v7: sha256:59e6374ec269749f1ee07f02cb73be7aea3e960fdb8c1304e59847b556e8b2c0
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.linux-arm64.tar.gz
+    linux-arm64: sha256:a0e419dd3e87fa7833043e01dca588ee022e1fcbeb925e9198e9ccca090d44f9
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.linux-ppc64le.tar.gz
+    linux-ppc64le: sha256:a1d989fbe67aa193c8348a6d6ad4b6ab7939440fa8efcf16097087d41fd5c4c6
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.linux-riscv64.tar.gz
+    linux-riscv64: sha256:48bd0d22a2412cc521f8eda2ab5325b3b66209ac387cbaf8bc9e29f188a851bb
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.linux-s390x.tar.gz
+    linux-s390x: sha256:765eb0755272ca35b3a04e36075307526140da3f06db3a57b6c02b76efa4aeb0
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.windows-amd64.tar.gz
+    windows-amd64: sha256:274dd34ba0f79fb6c6d0089f1f6a593603e5e7224d203447c5e94a478d2a8020
+    # https://github.com/moby/buildkit/releases/download/v0.10.2/buildkit-v0.10.2.windows-arm64.tar.gz
+    windows-arm64: sha256:ab879ea3ebcf86d88cf8bf72f61c69cef00c9ad5be36de49e51cd9da156d8c38
