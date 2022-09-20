@@ -1,5 +1,7 @@
 ---
 # vars file for buildkit
+buildkit_os: '{{ ansible_system | lower }}'
+buildkit_arch: '{{ buildkit_arch_map[ansible_architecture] }}'
 buildkit_platform: '{{ buildkit_os }}-{{ buildkit_arch }}'
 buildkit_name: buildkit-v{{ buildkit_ver }}.{{ buildkit_platform }}
 buildkit_archive: '{{ buildkit_name }}.{{ buildkit_archive_type | default("tar.gz") }}'

@@ -55,3 +55,12 @@
     src: '{{ buildkit_bin_dir }}/{{ item }}'
     dest: '{{ buildkit_link_dir }}/{{ item }}'
     state: link
+- name: linking qemu executables in {{ buildkit_bin_dir }} to {{ buildkit_install_dir }}
+  when: item != ansible_architecture
+  with_items: '{{ buildkit_qemu_architectures }}'
+  become: true
+  become_user: root
+  file:
+    src: '{{ buildkit_bin_dir }}/buildkit-qemu-{{ item }}'
+    dest: '{{ buildkit_link_dir }}/buildkit-qemu-{{ item }}'
+    state: link

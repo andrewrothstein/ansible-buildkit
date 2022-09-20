@@ -2,18 +2,26 @@
 # defaults file for buildkit
 buildkit_ver: 0.10.4
 buildkit_mirror: https://github.com/moby/buildkit/releases/download
-buildkit_os: linux
-buildkit_arch: amd64
+buildkit_arch_map:
+  aarch64: arm64
+  armv7: arm-v7
+  ppc64le: ppc64le
+  s390x: s390x
+  x86_64: amd64
 buildkit_parent_install_dir: /usr/local
+
+buildkit_qemu_architectures:
+  - aarch64
+  - x86_64
+  - arm
+  - i386
+  - ppc64le
+  - riscv64
+  - s390x
+
 buildkit_apps:
   - buildctl
   - buildkitd
-  - buildkit-qemu-aarch64
-  - buildkit-qemu-arm
-  - buildkit-qemu-i386
-  - buildkit-qemu-ppc64le
-  - buildkit-qemu-riscv64
-  - buildkit-qemu-s390x
   - buildkit-runc
 
 buildkit_checksums:
