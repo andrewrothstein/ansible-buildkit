@@ -32,6 +32,3 @@ galaxy_info:
   galaxy_tags:
     - development
   role_name: buildkit
-
-dependencies:
-  - andrewrothstein.unarchive-deps

@@ -4,6 +4,7 @@ buildkit_ver: 0.10.4
 buildkit_mirror: https://github.com/moby/buildkit/releases/download
 buildkit_arch_map:
   aarch64: arm64
+  arm64: arm64
   armv7: arm-v7
   ppc64le: ppc64le
   s390x: s390x
