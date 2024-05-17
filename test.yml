@@ -1,10 +1,13 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.buildkit
+  hosts: all
   roles:
     - role: '{{ playbook_dir }}'
   tasks:
-    - command: /usr/local/bin/buildctl --version
+    - name: Executing 'buildctl --version'
+      ansible.builtin.command: /usr/local/bin/buildctl --version
+      changed_when: false
       register: buildkit_test_output
-    - name: buildctl --version
-      debug:
+    - name: Output of 'buildctl --version'
+      ansible.builtin.debug:
         msg: '{{ buildkit_test_output.stdout }}'

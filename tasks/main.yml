@@ -1,8 +1,9 @@
 ---
-- include_role:
+- name: Installing andrewrothtein.unarchivedeps
+  ansible.builtin.include_role:
     name: andrewrothstein.unarchivedeps
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -11,58 +12,59 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: check for installation in {{ buildkit_install_dir }}
+- name: Check for installation in {{ buildkit_install_dir }}
   become: true
-  stat:
+  ansible.builtin.stat:
     path: '{{ buildkit_install_dir }}'
   register: buildkit_binary
   changed_when: false
-- when: not buildkit_binary.stat.exists
+- name: Downloading and installing buildkit
+  when: not buildkit_binary.stat.exists
   block:
-    - name: downloading {{ buildkit_url }}...
+    - name: Downloading {{ buildkit_url }}...
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ buildkit_url }}'
         dest: '{{ buildkit_tmp_archive }}'
         checksum: '{{ buildkit_checksum }}'
-        mode: 0644
-    - name: mkdir -p {{ buildkit_install_dir }}
+        mode: '644'
+    - name: Mkdir -p {{ buildkit_install_dir }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ buildkit_install_dir }}'
         state: directory
-        mode: 0755
-    - name: unarchive {{ buildkit_tmp_archive }}
+        mode: '755'
+    - name: Unarchive {{ buildkit_tmp_archive }}
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ buildkit_tmp_archive }}'
         dest: '{{ buildkit_install_dir }}'
         creates: '{{ buildkit_bin_dir }}'
   always:
-    - name: rm -f {{ buildkit_tmp_archive }}
+    - name: Rm -f {{ buildkit_tmp_archive }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ buildkit_tmp_archive }}'
         state: absent
-- name: linking executables in {{ buildkit_bin_dir }} to {{ buildkit_install_dir }}
+- name: Linking executables in {{ buildkit_bin_dir }} to {{ buildkit_install_dir }}
   become: true
   become_user: root
   with_items: '{{ buildkit_apps }}'
-  file:
+  ansible.builtin.file:
     src: '{{ buildkit_bin_dir }}/{{ item }}'
     dest: '{{ buildkit_link_dir }}/{{ item }}'
     state: link
-- name: linking qemu executables in {{ buildkit_bin_dir }} to {{ buildkit_install_dir }}
+- name: Linking qemu executables in {{ buildkit_bin_dir }} to {{ buildkit_install_dir }}
   when: item != ansible_architecture
   with_items: '{{ buildkit_qemu_architectures }}'
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ buildkit_bin_dir }}/buildkit-qemu-{{ item }}'
     dest: '{{ buildkit_link_dir }}/buildkit-qemu-{{ item }}'
     state: link
