@@ -39,4 +39,4 @@ dl_ver ()
     dl $ver windows arm64 tar.gz
 }
 
-dl_ver ${1:-0.18.1}
+dl_ver ${1:-0.19.0}
