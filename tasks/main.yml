@@ -60,7 +60,7 @@
     dest: '{{ buildkit_link_dir }}/{{ item }}'
     state: link
 - name: Linking qemu executables in {{ buildkit_bin_dir }} to {{ buildkit_install_dir }}
-  when: item != ansible_architecture
+  when: item != ansible_facts["architecture"]
   with_items: '{{ buildkit_qemu_architectures }}'
   become: true
   become_user: root
