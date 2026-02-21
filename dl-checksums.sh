@@ -39,4 +39,4 @@ dl_ver ()
     dl $ver windows arm64
 }
 
-dl_ver ${1:-0.26.3}
+dl_ver ${1:-0.27.1}
