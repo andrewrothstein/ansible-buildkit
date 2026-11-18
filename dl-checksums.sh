@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
-DIR=~/Downloads
+DIR=$(mktemp -d)
+trap 'rm -rf "$DIR"' EXIT
 MIRROR=https://github.com/moby/buildkit/releases/download
 
 # https://github.com/moby/buildkit/releases/download/v0.8.3/buildkit-v0.8.3.linux-amd64.tar.gz
@@ -15,10 +16,7 @@ dl()
     local file=buildkit-v${ver}.${platform}.${suffix}
     local dlfile=$DIR/$file
     local url=$MIRROR/v${ver}/$file
-    if [ ! -e "$dlfile" ]
-    then
-        curl -fsSL --proto '=https' --tlsv1.2 -o "$dlfile" "$url"
-    fi
+    curl -fsSL --proto '=https' --tlsv1.2 -o "$dlfile" "$url"
     local sum
     sum=$(sha256sum "$dlfile" | awk '{print $1}')
     if ! printf '%s' "$sum" | grep -Eq '^[0-9a-f]{64}$'; then
@@ -45,6 +43,6 @@ dl_ver ()
     dl "$ver" windows arm64
 }
 
-for v in "${@:-0.34.2}"; do
+for v in "${@:-0.35.0}"; do
     dl_ver "$v"
 done
