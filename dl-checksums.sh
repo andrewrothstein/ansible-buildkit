@@ -43,6 +43,6 @@ dl_ver ()
     dl "$ver" windows arm64
 }
 
-for v in "${@:-0.35.0}"; do
+for v in "${@:-0.35.1}"; do
     dl_ver "$v"
 done
